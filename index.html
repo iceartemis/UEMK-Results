@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Semester Result Login</title>
+
+    <style>
+        body{
+            background-color:#d6dce9;
+            font-family:Arial, sans-serif;
+            text-align:center;
+        }
+
+        h1{
+            color:darkred;
+            margin-top:50px;
+        }
+
+        .login-box{
+            border:1px solid gray;
+            background:white;
+            width:500px;
+            margin:auto;
+            padding:30px;
+            margin-top:50px;
+        }
+
+        input{
+            padding:8px;
+            margin:10px;
+        }
+
+        button{
+            padding:8px 15px;
+        }
+
+        #error{
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Semester Result</h1>
+
+    <div class="login-box">
+
+        <label>Enrollment No:</label>
+        <input type="text" id="username"><br>
+
+        <label>Password:</label>
+        <input type="password" id="password"><br>
+
+        <button onclick="login()">Login</button>
+
+        <p id="error"></p>
+
+    </div>
+
+<script>
+
+function login()
+{
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "123456" && pass === "uem123")
+    {
+        window.location.href = "result.html";
+    }
+    else
+    {
+        document.getElementById("error").innerHTML =
+        "Invalid Username or Password";
+    }
+}
+
+</script>
+
+</body>
+</html>
