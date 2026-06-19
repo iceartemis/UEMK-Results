@@ -1,79 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Semester Result Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semester Result</title>
 
-    <style>
-        body{
-            background-color:#d6dce9;
-            font-family:Arial, sans-serif;
-            text-align:center;
-        }
+<style>
+body{
+    margin:0;
+    background:#d6dce9;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-        h1{
-            color:darkred;
-            margin-top:50px;
-        }
+.banner{
+    width:940px;
+    margin:12px auto 0;
+    text-align:center;
+}
 
-        .login-box{
-            border:1px solid gray;
-            background:white;
-            width:500px;
-            margin:auto;
-            padding:30px;
-            margin-top:50px;
-        }
+.banner img{
+    max-width:100%;
+}
 
-        input{
-            padding:8px;
-            margin:10px;
-        }
+.title{
+    text-align:center;
+    color:#990000;
+    font-size:28px;
+    font-weight:bold;
+    margin-top:25px;
+}
 
-        button{
-            padding:8px 15px;
-        }
+.login-container{
+    width:99%;
+    margin:25px auto;
+    border:1px solid #9c9c9c;
+    background:#d6dce9;
+    padding:35px 0;
+}
 
-        #error{
-            color:red;
-        }
-    </style>
+.login-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:4px;
+    font-size:14px;
+    color:#000099;
+}
+
+label{
+    color:#000099;
+}
+
+input[type="text"],
+input[type="password"]{
+    width:180px;
+    height:24px;
+    border:1px solid #777;
+}
+
+.captcha-box{
+    width:180px;
+    height:48px;
+    background:linear-gradient(to bottom,#000,#ff0000,#000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:gold;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:3px;
+    font-family:Georgia, serif;
+}
+
+.small-captcha{
+    width:55px !important;
+}
+
+select{
+    height:28px;
+}
+
+button{
+    height:30px;
+    cursor:pointer;
+}
+
+.datetime{
+    color:#000099;
+}
+
+#error{
+    text-align:center;
+    color:red;
+    margin-top:15px;
+    font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
-    <h1>Semester Result</h1>
+<div class="banner">
+    <img src="YOUR_LOGO.png" alt="UEM Logo">
+</div>
 
-    <div class="login-box">
+<div class="title">
+    Semester Result
+</div>
 
-        <label>Enrollment No:</label>
-        <input type="text" id="username"><br>
+<div class="login-container">
 
-        <label>Password:</label>
-        <input type="password" id="password"><br>
+    <form onsubmit="return login()">
 
-        <button onclick="login()">Login</button>
+        <div class="login-row">
 
-        <p id="error"></p>
+            <label>Enrollment No</label>
 
-    </div>
+            <input type="text" id="username">
+
+            <label>Password:</label>
+
+            <input type="password" id="password">
+
+            <label>Captcha</label>
+
+            <div class="captcha-box">
+                4GHR
+            </div>
+
+            <input class="small-captcha" type="text">
+
+            <label>Login As..</label>
+
+            <select>
+                <option>SemResult</option>
+            </select>
+
+            <button type="submit">Go</button>
+
+            <span class="datetime" id="datetime"></span>
+
+        </div>
+
+    </form>
+
+    <div id="error"></div>
+
+</div>
 
 <script>
 
 function login()
 {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
 
-    if(user === "12025035340" && pass === "2006")
+    const correctUser = "12025035340";
+    const correctPass = "2006";
+
+    if(user === correctUser && pass === correctPass)
     {
         window.location.href = "results.html";
     }
     else
     {
         document.getElementById("error").innerHTML =
-        "Invalid Username or Password";
+        "Invalid Enrollment Number or Password";
     }
+
+    return false;
 }
+
+function updateTime()
+{
+    const now = new Date();
+
+    const day = now.getDate();
+    const month = now.getMonth()+1;
+    const year = now.getFullYear();
+
+    document.getElementById("datetime").innerHTML =
+    "Current Date is "
+    + day + "-" + month + "-" + year +
+    " Time is "
+    + now.toLocaleTimeString();
+}
+
+updateTime();
+setInterval(updateTime,1000);
 
 </script>
 
